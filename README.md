@@ -1,2 +1,1 @@
-# notes
-a repository of notes
+A collection of notes - sorted by language
