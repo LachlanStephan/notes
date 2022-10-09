@@ -1,9 +1,9 @@
 # MySQL
 
-### github.com/go-sql-driver/mysql v1.6.0
+## Standard select query:
 
 <br>
-Standard select query:
+github.com/go-sql-driver/mysql v1.6.0
 
 1. Add statement to variable e.g `stmt := SELECT * FROM Users WHERE id = ?`
 2. Execute the statement add assign to a variable e.g. `rows := db.queryRow(stmt, id)` - query will take the sql as param 1 and any values after will be assigned to the placeholder values in the query. We need to make sure the number of values passed === number of values in query.
