@@ -1,5 +1,8 @@
 # MySQL
 
+### github.com/go-sql-driver/mysql v1.6.0
+
+<br>
 Standard select query:
 
 1. Add statement to variable e.g `stmt := SELECT * FROM Users WHERE id = ?`
@@ -8,3 +11,24 @@ Standard select query:
 4. We can use the .Scan function to assign all columns retrieved to the new variable `u` e.g. `rows.Scan(&u.Username, &u.Email)`
 5. We can then return `u` and be done with the query and function (make sure all error is properly added)
 6. NOTE - We can shorten the query by chaining the `.Scan` onto the end of the `queryRow()` e.g. `err := db.queryRow(sql, values).Scan(&u.Username, &u.Email)` - Here we will do error handling and if all good - we can return `u, nil` as the `.Scan()` has worked. This is possible because errors from `queryRow` are deferred until `.Scan()` is called. Shortening the function seems to be the better choice
+
+# Errors / Error handling
+
+## Error.Is()
+
+This method takes two parameters.
+
+1. The current err variable
+2. The target err - what you suspect might be the error
+   Used when you want to check for a specific error that may have occurred during the operation. This is good for in certain cases you may want to handle one error a certain way and the rest in a generic way. For example if you want to check that the error === no rows returned
+
+```
+    // check for no record returned
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, models.ErrNoRecord
+		} else {
+			return nil, err
+		}
+	}
+```
