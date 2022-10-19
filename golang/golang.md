@@ -13,7 +13,8 @@ github.com/go-sql-driver/mysql v1.6.0
 ## Multi select
 1. This time we ues `rows, err := db.Query(stmt)`. Two things need to happen here, we need to handle the error and defer/close the connection. We have to handle the error first - then call `defer rows.Close()`.
 2. Create an empty slice of the related struct `tests := []*Test{}` - We will return this full of our query results if all goes well.
-3. ```
+3. We need to iterate over the rows and assign the data to a slice pointing to the related struct
+```
 for rows.Next() {
     t := &Test{} // new pointer to Test struct
     err = rows.Scan(make sure all parameters here === selected columns in stmt)
