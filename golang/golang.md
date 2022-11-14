@@ -70,7 +70,7 @@ e := Example{'test', 5} // default values set
 - Memory for all fields will be set and if no value is provider Go will allocate the corresponding zero value.
 - We can access fields with '.' operator. e.g `e.x`.
 
-## Method injection and accessing via structs 
+## Dependency injection and accessing via structs 
 Note: In this case - we are injecting a pointer of `*sql.DB` to our model layer methods 
 - Typically we want to have a struct that contains our sql pointer - this will be injected into methods that require it. 
 - Any method that method that this struct injected into it can be accessed in another package calling this one - if the struct is being referenced.
