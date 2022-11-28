@@ -10,10 +10,18 @@ easy mistake to make:
 ```
 $large_set_data = array() // assume this has heaps of data
 functionCall($large_set_data);
+
+public functionCall($large_set_data) {
+  // copied data when we use it here
+}
 ```
 
 likely better option:
 ```
 $large_set_data = array() // assume this has heaps of data
-functionCall(&$large_set_data);
+functionCall($large_set_data);
+
+public functionCall(&$large_set_data) {
+  // reference underlying data
+}
 ```
