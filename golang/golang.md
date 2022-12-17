@@ -97,5 +97,10 @@ a := &app{
 }
 a.blogs.Insert(something) // we have access to this and so does anywhere that app is injected into
 ```
-
+# HTTP 
+## Requests 
+- Every request (e.g. /blogs) is handled in it's own goroutine. 
+## Panics
+- Because each route is it's own goroutine. If there is panic on a specific route, it will close that goroutine and not terminate the application
+- When an HTTP route panics - it wwill unwind the stack and call all deferred functions. So we can recover panics and return proper error messges. This can be done by wrapping http server call in a method that handles/checks for a panic.
 
